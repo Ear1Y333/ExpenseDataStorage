@@ -14,7 +14,11 @@
   margin: 0 auto; /* Центрирование контейнера */
 }
 /* Стили для кнопок */
-
+.blue_button{
+  width: 560px;
+  margin: 10px auto;
+  border-radius: 35px;
+}
 .table-container {
   width: 600px;
   border-radius: 15px;
