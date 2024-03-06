@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href = "css/bootstrap.min.css" rel="stylesheet">
+    <title></title>
+   
+</head>
+
+<body background="css/bg2.jpg">
+    
+  <div class="container mt-5">
+    <!-- Создаем вертикальный контейнер с кнопками на одной линии -->
+    <div class="vertical-container">
+        <!-- Кнопка-чекбокс 1 -->
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="btn1" autocomplete="off" checked>
+          <label class="btn btn-outline-primary" for="btn1">Ввод данных</label>
+        
+          <input type="radio" class="btn-check" name="btnradio" id="btn2" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btn2">Получение данных</label>
+        </div>
+        
+        
+      </div>
+    </div>
+    <div class="table-container text-center" id="mainLabel">
+        <div class="form-inner" id="label1" style="display:block;">
+        <h3>Введите данные</h3>
+        <input type="familyMember" placeholder="family member">
+        <input type="good" placeholder="good">
+        <div class="row">
+          <div class="col">
+            <input type="amount" class="form-control" placeholder="amount">
+          </div>
+          <div class="col">
+            <input type="unit_price" class="form-control" placeholder="unit price">
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg blue_button rounded-pill">Отправить</button>
+
+        </div>
+
+
+        <div class="form-inner" id="label2" style="display:none;">Пусто...</div>
+
+        
+    </div>
+  </div>
+
+  </div>
+
+    <script src = "js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
