@@ -1,14 +1,13 @@
 package mySpring.ExpenseDataSrorage.Model;
-public class Payment {
-    private int id = 0;
+
+public class PaymentCreate {
     private int family_member;
     private int good;
     private int amount;
     private int unit_price;
     private String purchase_date;
 
-    public Payment(int id, int family_member, int good, int amount, int unit_price, String purchase_date) {
-        this.id = id;
+    public PaymentCreate(int family_member, int good, int amount, int unit_price, String purchase_date) {
         this.family_member = family_member;
         this.good = good;
         this.amount = amount;
@@ -17,10 +16,6 @@ public class Payment {
     }
 
 
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void setFamily_member(int family_member) {
         this.family_member = family_member;
@@ -42,9 +37,6 @@ public class Payment {
         this.purchase_date = purchase_date;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public int getFamily_member() {
         return family_member;

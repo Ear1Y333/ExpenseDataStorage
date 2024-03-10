@@ -1,13 +1,14 @@
 package mySpring.ExpenseDataSrorage.Controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.Payment;
-import mySpring.ExpenseDataSrorage.Model.PaymentCreateDto;
+import mySpring.ExpenseDataSrorage.Model.PaymentCreate;
 import mySpring.ExpenseDataSrorage.Service.PaymentsServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Tag(name = "main_methods")
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/payments")
@@ -20,13 +21,13 @@ public class PaymentsController {
         return paymentsService.getPayments();
     }
     @PostMapping("create")
-    public Payment savePayment(@RequestBody PaymentCreateDto payment) {
+    public PaymentCreate savePayment(@RequestBody PaymentCreate payment) {
         return paymentsService.savePayment(payment);
     }
 
     @GetMapping("{id}")
     public Payment findById(@PathVariable int id) {
-        return paymentsService.findById(id);
+        return paymentsService.findPaymentById(id);
     }
     @PutMapping("{id}")
     public Payment updatePayment(@RequestBody Payment payment, @PathVariable int id) {
@@ -34,8 +35,6 @@ public class PaymentsController {
     }
     @DeleteMapping("{id}")
     public String deletePayment(@PathVariable int id) {
-        paymentsService.deletePayment(id);
-        return ("FUCK");
-        //TODO ПИСАТЬ СООБЩЕНИЕ ТОЛЬКО ЕСЛИ УДАЛЯЕТСЯ
+        return paymentsService.deletePayment(id);
     }
 }

@@ -1,14 +1,14 @@
 package mySpring.ExpenseDataSrorage.Service;
 
 import mySpring.ExpenseDataSrorage.Model.Payment;
-import mySpring.ExpenseDataSrorage.Model.PaymentCreateDto;
+import mySpring.ExpenseDataSrorage.Model.PaymentCreate;
 
 import java.util.List;
 
 interface PaymentsService {
      List<Payment> getPayments();
-     Payment savePayment(PaymentCreateDto payment);
-     Payment findById(int id);
+     PaymentCreate savePayment(PaymentCreate payment);
+     Payment findPaymentById(int id);
      Payment updatePayment(Payment payment);
-     void deletePayment(int id);
+     String deletePayment(int id);
 }
