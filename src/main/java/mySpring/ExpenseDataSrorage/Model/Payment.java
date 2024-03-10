@@ -6,7 +6,6 @@ public class Payment {
     private int amount;
     private int unit_price;
     private String purchase_date;
-
     public Payment(int id, int family_member, int good, int amount, int unit_price, String purchase_date) {
         this.id = id;
         this.family_member = family_member;
@@ -15,7 +14,14 @@ public class Payment {
         this.unit_price = unit_price;
         this.purchase_date = purchase_date;
     }
-
+    public Payment(int id, PaymentCreate paymentCreate) {
+        this.id = id;
+        family_member = paymentCreate.getFamily_member();
+        good = paymentCreate.getGood();
+        amount = paymentCreate.getAmount();
+        unit_price = paymentCreate.getUnit_price();
+        purchase_date = paymentCreate.getPurchase_date();
+    }
 
 
     public void setId(int id) {

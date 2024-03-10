@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @Tag(name = "main_methods")
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/payments")
 @AllArgsConstructor
 public class PaymentsController {
@@ -30,8 +29,8 @@ public class PaymentsController {
         return paymentsService.findPaymentById(id);
     }
     @PutMapping("{id}")
-    public Payment updatePayment(@RequestBody Payment payment, @PathVariable int id) {
-        return paymentsService.updatePayment(payment);
+    public Payment updatePayment(@RequestBody PaymentCreate payment, @PathVariable int id) {
+        return paymentsService.updatePayment(payment, id);
     }
     @DeleteMapping("{id}")
     public String deletePayment(@PathVariable int id) {

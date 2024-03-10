@@ -9,6 +9,6 @@ interface PaymentsService {
      List<Payment> getPayments();
      PaymentCreate savePayment(PaymentCreate payment);
      Payment findPaymentById(int id);
-     Payment updatePayment(Payment payment);
+     Payment updatePayment(PaymentCreate payment, int id);
      String deletePayment(int id);
 }

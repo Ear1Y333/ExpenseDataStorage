@@ -63,16 +63,16 @@ public class PaymentsRepository {
             throw new RuntimeException(e);
         }
     }
-    public Payment updateById(Payment payment){
+    public Payment updateById(PaymentCreate payment, int id){
         try {
             if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                    formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date(), payment.getId()))==0)
+                    formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date(), id))==0)
                 return null;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return payment;
+        return new Payment(id, payment);
     }
     public String deleteById(int id){
         try {

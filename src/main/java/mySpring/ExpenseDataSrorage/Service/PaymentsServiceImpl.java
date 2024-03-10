@@ -28,8 +28,8 @@ public class PaymentsServiceImpl implements PaymentsService{
     }
 
     @Override
-    public Payment updatePayment(Payment payment) {
-        return repository.updateById(payment);
+    public Payment updatePayment(PaymentCreate payment, int id) {
+        return repository.updateById(payment, id);
     }
 
     @Override
