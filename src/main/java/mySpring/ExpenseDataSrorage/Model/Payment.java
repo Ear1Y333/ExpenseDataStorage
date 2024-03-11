@@ -1,6 +1,6 @@
 package mySpring.ExpenseDataSrorage.Model;
 public class Payment {
-    private int id = 0;
+    private int id;
     private int family_member;
     private int good;
     private int amount;
@@ -14,7 +14,7 @@ public class Payment {
         this.unit_price = unit_price;
         this.purchase_date = purchase_date;
     }
-    public Payment(int id, PaymentCreate paymentCreate) {
+    public Payment(int id, PaymentCreateDto paymentCreate) {
         this.id = id;
         family_member = paymentCreate.getFamily_member();
         good = paymentCreate.getGood();

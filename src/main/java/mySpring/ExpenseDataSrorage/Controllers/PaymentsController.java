@@ -3,7 +3,7 @@ package mySpring.ExpenseDataSrorage.Controllers;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.Payment;
-import mySpring.ExpenseDataSrorage.Model.PaymentCreate;
+import mySpring.ExpenseDataSrorage.Model.PaymentCreateDto;
 import mySpring.ExpenseDataSrorage.Service.PaymentsServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +20,7 @@ public class PaymentsController {
         return paymentsService.getPayments();
     }
     @PostMapping("create")
-    public PaymentCreate savePayment(@RequestBody PaymentCreate payment) {
+    public PaymentCreateDto savePayment(@RequestBody PaymentCreateDto payment) {
         return paymentsService.savePayment(payment);
     }
 
@@ -29,7 +29,7 @@ public class PaymentsController {
         return paymentsService.findPaymentById(id);
     }
     @PutMapping("{id}")
-    public Payment updatePayment(@RequestBody PaymentCreate payment, @PathVariable int id) {
+    public Payment updatePayment(@RequestBody PaymentCreateDto payment, @PathVariable int id) {
         return paymentsService.updatePayment(payment, id);
     }
     @DeleteMapping("{id}")
