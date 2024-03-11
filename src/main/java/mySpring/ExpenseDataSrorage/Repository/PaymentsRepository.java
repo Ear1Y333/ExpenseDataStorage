@@ -2,7 +2,7 @@ package mySpring.ExpenseDataSrorage.Repository;
 
 import mySpring.ExpenseDataSrorage.Connection.SQLConnection;
 import mySpring.ExpenseDataSrorage.Model.Payment;
-import mySpring.ExpenseDataSrorage.Model.PaymentCreate;
+import mySpring.ExpenseDataSrorage.Model.PaymentCreateDto;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -43,7 +43,7 @@ public class PaymentsRepository {
             throw new RuntimeException(e);
         }
     }
-    public PaymentCreate save(PaymentCreate payment){
+    public PaymentCreateDto save(PaymentCreateDto payment){
         try {
             statement.execute(QUERY_TO_INSERT_VALUES.formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date()));
             return payment;
@@ -63,7 +63,7 @@ public class PaymentsRepository {
             throw new RuntimeException(e);
         }
     }
-    public Payment updateById(PaymentCreate payment, int id){
+    public Payment updateById(PaymentCreateDto payment, int id){
         try {
             if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
                     formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date(), id))==0)

@@ -1,10 +1,9 @@
 package mySpring.ExpenseDataSrorage.Service;
 
 import mySpring.ExpenseDataSrorage.Model.Payment;
-import mySpring.ExpenseDataSrorage.Model.PaymentCreate;
+import mySpring.ExpenseDataSrorage.Model.PaymentCreateDto;
 import mySpring.ExpenseDataSrorage.Repository.PaymentsRepository;
 import org.springframework.stereotype.Service;
-import mySpring.ExpenseDataSrorage.Connection.SQLConnection;
 
 import java.util.List;
 @Service
@@ -18,7 +17,7 @@ public class PaymentsServiceImpl implements PaymentsService{
     }
 
     @Override
-    public PaymentCreate savePayment(PaymentCreate payment) {
+    public PaymentCreateDto savePayment(PaymentCreateDto payment) {
         return repository.save(payment);
     }
 
@@ -28,7 +27,7 @@ public class PaymentsServiceImpl implements PaymentsService{
     }
 
     @Override
-    public Payment updatePayment(PaymentCreate payment, int id) {
+    public Payment updatePayment(PaymentCreateDto payment, int id) {
         return repository.updateById(payment, id);
     }
 
