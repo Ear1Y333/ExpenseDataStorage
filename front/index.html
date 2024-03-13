@@ -19,30 +19,59 @@
         <label class="btn btn-outline-primary" for="btn1">Ввод данных</label>
 
         <input type="radio" class="btn-check" name="btnradio" id="btn2" autocomplete="off">
-        <label class="btn btn-outline-primary" for="btn2">Получение данных</label>
+        <label class="btn btn-outline-primary" for="btn2" onclick="location.href = 'getValues.html';">Получение данных</label>
       </div>
     </div>
   </div>
   <div class="table-container text-center" id="mainLabel">
     <div class="form-inner" id="label1" style="display:block;">
-      <form id="myForm">
-        <h3>Введите данные</h3>
-        <input type="number" placeholder="family member" name="familyMember">
-        <input type="number" placeholder="good" name="good">
-        <div class="row">
-          <div class="col">
-            <input type="number" class="form-control" placeholder="amount" name="amount">
-          </div>
-          <div class="col">
-            <input type="number" class="form-control" placeholder="unit price" name ="unit_price">
-          </div>
+      <!-- Кнопки для выбора действия -->
+        <!-- Кнопки для переключения форм -->
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <button type="button" class="btn btn-primary" onclick="showForm('familyMemberForm')" data-target="familyMemberForm">Family Member</button>
+          <button type="button" class="btn btn-primary" onclick="showForm('paymentsForm')" data-target="paymentsForm">Payments</button>
+          <button type="button" class="btn btn-primary" onclick="showForm('goodsForm')" data-target="goodsForm">Goods</button>
+          <button type="button" class="btn btn-primary" onclick="showForm('goodTypesForm')" data-target="goodTypesForm">Good Types</button>
         </div>
-        <input type="text" placeholder="date" name="purchase_date">
-        <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill">Отпрвфавить</button>
+
+    
+        <form id="familyMemberForm" style="display:none;" class="mt-4">
+          <input type="text" placeholder="family member" name="status">
+          <input type="text" placeholder="member name" name="member_name">
+          <input type="text" placeholder="birthday" name="birthday">
+          <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill" onclick="submitFormFamilyMember()">Отправить</button>
+      </form>
+      
+    
+      <form id="paymentsForm" style="display:none;" class = "mt-4">
+          <input type="number" placeholder="family member" name="family_member">
+          <input type="number" placeholder="good" name="good">
+          <div class="row">
+            <div class="col">
+              <input type="number" class="form-control" placeholder="amount" name="amount">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control" placeholder="unit price" name ="unit_price">
+            </div>
+          </div>
+          <input type="text" placeholder="date" name="purchase_date">
+          <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill" onclick="submitFormPayments()">submit</button>
+      </form>
+    
+      <form id="goodsForm" style="display:none;" class = "mt-4">
+          <input type="text" placeholder="good name" name="good_name">
+          <input type="number" placeholder="good type" name="type">
+          <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill" onclick="submitFormGoods()">Отправить</button>
+      </form>
+    
+      <form id="goodTypesForm" style="display:none;" class = "mt-4">
+        <form id="myForm">
+          <input type="text" placeholder="good type name" name="good_type_name">
+          <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill" onclick="submitFormGoodTypes()">Отправить</button>
+        </form>
       </form>
     </div>
   </div>
-  <div class="form-inner" id="label2" style="display:none;">Пусто...</div>
 
 
   <script src="js/bootstrap.bundle.min.js"></script>
