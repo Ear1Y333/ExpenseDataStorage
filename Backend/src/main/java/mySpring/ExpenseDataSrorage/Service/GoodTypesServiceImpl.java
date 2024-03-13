@@ -8,7 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class GoodTypesServiceImpl implements GoodTypesService {
-    GoodTypesRepository repository = new GoodTypesRepository();
+    private final GoodTypesRepository repository;
+
+    public GoodTypesServiceImpl(GoodTypesRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public List<GoodType> getGoodTypes() {
         return repository.findAll();

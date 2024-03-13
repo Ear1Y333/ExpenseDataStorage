@@ -10,7 +10,12 @@ import java.util.List;
 
 public class PaymentsServiceImpl implements PaymentsService{
 
-    PaymentsRepository repository = new PaymentsRepository();
+    private final PaymentsRepository repository;
+
+    public PaymentsServiceImpl(PaymentsRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public List<Payment> getPayments() {
         return repository.findAll();

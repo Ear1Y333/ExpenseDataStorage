@@ -21,10 +21,9 @@ public class FamilyMemberRepository {
     private final String QUERY_TO_DELETE_BY_ID = "DELETE FROM FamilyMembers WHERE id = %d";
     private final String MESSAGE_FOR_UNSUCCESSFUL_DELETION = "No family member with id = %d";
     private final String MESSAGE_FOR_SUCCESSFUL_DELETION = "Family member with id = %d was successfully deleted";
-    private Connection connection = new SQLConnection().getConnection();
     private final Statement statement;
 
-    public FamilyMemberRepository() {
+    public FamilyMemberRepository(Connection connection) {
         try {
             statement = connection.createStatement();
         } catch (SQLException e) {

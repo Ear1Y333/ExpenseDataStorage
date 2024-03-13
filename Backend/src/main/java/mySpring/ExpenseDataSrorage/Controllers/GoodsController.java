@@ -1,17 +1,17 @@
 package mySpring.ExpenseDataSrorage.Controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.Good;
 import mySpring.ExpenseDataSrorage.Model.GoodCreateDto;
 import mySpring.ExpenseDataSrorage.Service.GoodsServiceImpl;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+@Tag(name = "main_methods")
 @RestController
 @RequestMapping("/api/goods")
 @AllArgsConstructor
-//@Tag
 public class GoodsController {
     GoodsServiceImpl service;
 

@@ -8,7 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class GoodsServiceImpl implements GoodsService{
-    GoodsRepository repository = new GoodsRepository();
+    private final GoodsRepository repository;
+
+    public GoodsServiceImpl(GoodsRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public List<Good> getGoods() {
         return repository.findAll();

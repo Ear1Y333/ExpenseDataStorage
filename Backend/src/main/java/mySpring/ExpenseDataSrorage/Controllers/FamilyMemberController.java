@@ -1,5 +1,6 @@
 package mySpring.ExpenseDataSrorage.Controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.FamilyMember;
 import mySpring.ExpenseDataSrorage.Model.FamilyMemberCreateDto;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "main_methods")
 @RestController
 @RequestMapping("api/family_members")
 @AllArgsConstructor

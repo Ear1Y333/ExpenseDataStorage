@@ -1,17 +1,17 @@
 package mySpring.ExpenseDataSrorage.Controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.GoodType;
 import mySpring.ExpenseDataSrorage.Model.GoodTypeCreateDto;
 import mySpring.ExpenseDataSrorage.Service.GoodTypesServiceImpl;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+@Tag(name = "main_methods")
 @RestController
 @RequestMapping("/api/good_types")
 @AllArgsConstructor
-//@Tag
 public class GoodTypesController {
     GoodTypesServiceImpl service;
 

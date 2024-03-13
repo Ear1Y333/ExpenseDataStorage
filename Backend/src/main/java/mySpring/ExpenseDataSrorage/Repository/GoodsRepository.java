@@ -19,9 +19,8 @@ public class GoodsRepository {
     private static final String MESSAGE_FOR_SUCCESSFUL_DELETION = "Good with id = %d was successfully deleted";
     private final Statement statement;
 
-    public GoodsRepository() {
+    public GoodsRepository(Connection connection) {
         try {
-            Connection connection = new SQLConnection().getConnection();
             statement = connection.createStatement();
         } catch (SQLException e) {
             throw new RuntimeException(e);

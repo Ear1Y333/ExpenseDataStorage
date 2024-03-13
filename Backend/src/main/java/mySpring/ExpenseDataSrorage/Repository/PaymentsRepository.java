@@ -20,9 +20,8 @@ public class PaymentsRepository {
 
     private final Statement statement;
 
-    public PaymentsRepository() {
+    public PaymentsRepository(Connection connection) {
         try {
-            Connection connection = new SQLConnection().getConnection();
             statement = connection.createStatement();
         } catch (SQLException e) {
             throw new RuntimeException(e);

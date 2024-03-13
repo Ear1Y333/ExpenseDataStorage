@@ -23,9 +23,8 @@ public class GoodTypesRepository {
     private static final String MESSAGE_FOR_SUCCESSFUL_DELETION = "Good type with id = %d was successfully deleted";
     private final Statement statement;
 
-    public GoodTypesRepository() {
+    public GoodTypesRepository(Connection connection) {
         try {
-            Connection connection = new SQLConnection().getConnection();
             statement = connection.createStatement();
         } catch (SQLException e) {
             throw new RuntimeException(e);
