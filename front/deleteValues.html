@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <title></title>
+
+</head>
+
+<body background="css/bg2.jpg">
+
+  <div class="container mt-5">
+    <!-- Создаем вертикальный контейнер с кнопками на одной линии -->
+    <div class="vertical-container">
+      <!-- Кнопка-чекбокс 1 -->
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btn1" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn1" onclick="location.href='index.html';">Ввод данных</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btn2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn2" onclick="location.href = 'getValues.html';">Получение данных</label>
+       
+        <input type="radio" class="btn-check" name="btnradio" id="btn3" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="btn3">Удаление данных</label>
+      </div>
+    </div>
+  </div>
+  <div class="table-container text-center" id="mainLabel">
+    <div class="form-inner" id="label1" style="display:block;">
+      <form class="d-flex" id="deleteForm">
+        <select class="form-select me-2 rounded-start" aria-label="Выберите тип" id="selectType">
+          <option selected>Выберите тип</option>
+          <option value="familyMembers">Family Members</option>
+          <option value="payments">Payments</option>
+          <option value="goods">Goods</option>
+          <option value="goodTypes">Good Types</option>
+        </select>
+        <input class="form-control me-2 rounded-pill" type="text" placeholder="Введите ID" aria-label="Введите ID" id="inputID">
+        <button class="btn btn-primary rounded-end" type="submit">Отправить</button>
+      </form>      
+    </div>
+  </div>
+  <script>document.getElementById("deleteForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Предотвращаем стандартное поведение отправки формы
+    
+    // Получаем значения выбранного типа и введенного ID
+    var selectedType = document.getElementById("selectType").value;
+    var enteredID = document.getElementById("inputID").value;
+    var url = "http://localhost:8080/api/" + selectedType + "/" + enteredID;
+      
+      // Отправляем запрос на удаление
+      fetch(url, {
+        method: "DELETE"
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Ошибка сети");
+        }
+        console.log("Запрос на удаление выполнен успешно");
+        // Здесь вы можете выполнить дополнительные действия после успешного выполнения запроса
+      })
+      .catch(error => {
+        console.error("Ошибка при выполнении запроса на удаление:", error);
+        // Здесь вы можете выполнить дополнительные действия при возникновении ошибки
+      });
+      
+      // Очищаем поля формы после отправки
+      document.getElementById("selectType").selectedIndex = 0;
+      document.getElementById("inputID").value = "";
+  });</script>
+  
+</body>
+
+</html>
