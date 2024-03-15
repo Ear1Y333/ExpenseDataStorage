@@ -23,6 +23,10 @@
        
         <input type="radio" class="btn-check" name="btnradio" id="btn3" autocomplete="off" checked>
         <label class="btn btn-outline-primary" for="btn3">Удаление данных</label>
+
+        
+        <input type="radio" class="btn-check" name="btnradio" id="btn3" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn3"  onclick="location.href = 'update.html';">Обновить данные</label>
       </div>
     </div>
   </div>
@@ -31,10 +35,10 @@
       <form class="d-flex" id="deleteForm">
         <select class="form-select me-2 rounded-start" aria-label="Выберите тип" id="selectType">
           <option selected>Выберите тип</option>
-          <option value="familyMembers">Family Members</option>
+          <option value="family_members">Family Members</option>
           <option value="payments">Payments</option>
           <option value="goods">Goods</option>
-          <option value="goodTypes">Good Types</option>
+          <option value="good_types">Good types</option>
         </select>
         <input class="form-control me-2 rounded-pill" type="text" placeholder="Введите ID" aria-label="Введите ID" id="inputID">
         <button class="btn btn-primary rounded-end" type="submit">Отправить</button>
