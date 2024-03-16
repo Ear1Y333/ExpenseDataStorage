@@ -7,8 +7,12 @@ import java.util.List;
 
 public interface GoodTypesService {
     List<GoodType> getGoodTypes();
+
     GoodTypeCreateDto saveGoodType(GoodTypeCreateDto goodTypeCreateDto);
+
     GoodType findGoodTypeById(int id);
+
     GoodType updateGoodType(GoodTypeCreateDto goodTypeCreateDto, int id);
+
     String deleteGoodType(int id);
 }

@@ -10,8 +10,12 @@ import java.util.List;
 
 public interface FamilyMembersService {
     List<FamilyMember> getFamilyMembers();
+
     FamilyMemberCreateDto saveFamilyMember(FamilyMemberCreateDto familyMemberCreateDto);
+
     FamilyMember findFamilyMemberById(int id);
+
     FamilyMember updateFamilyMember(FamilyMemberCreateDto familyMemberCreateDto, int id);
+
     String deleteFamilyMember(int id);
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class SwaggerDocumentation {
     @Bean
-    public OpenAPI api(){
+    public OpenAPI api() {
         return new OpenAPI().servers(List.of(new Server().url("http://localhost:8080"))).info(new Info().title("Payments documentation"));
     }
 

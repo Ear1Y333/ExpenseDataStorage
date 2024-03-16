@@ -12,6 +12,7 @@ public class FamilyMember {
         this.member_name = member_name;
         this.birthday = birthday;
     }
+
     public FamilyMember(int id, FamilyMemberCreateDto familyMemberCreateDto) {
         this.id = id;
         status = familyMemberCreateDto.getStatus();

@@ -6,6 +6,7 @@ import mySpring.ExpenseDataSrorage.Repository.GoodTypesRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class GoodTypesServiceImpl implements GoodTypesService {
     private final GoodTypesRepository repository;

@@ -8,6 +8,7 @@ public class GoodType {
         this.good_type_id = good_type_id;
         this.good_type_name = good_type_name;
     }
+
     public GoodType(int good_type_id, GoodTypeCreateDto goodTypeCreateDto) {
         this.good_type_id = good_type_id;
         good_type_name = goodTypeCreateDto.getGood_type_name();

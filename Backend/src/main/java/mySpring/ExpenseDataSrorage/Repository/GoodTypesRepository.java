@@ -45,7 +45,8 @@ public class GoodTypesRepository {
             throw new RuntimeException(e);
         }
     }
-    public GoodTypeCreateDto save(GoodTypeCreateDto goodTypeCreateDto){
+
+    public GoodTypeCreateDto save(GoodTypeCreateDto goodTypeCreateDto) {
         try {
             statement.execute(QUERY_TO_INSERT_VALUES.formatted(goodTypeCreateDto.getGood_type_name()));
             return goodTypeCreateDto;
@@ -53,10 +54,11 @@ public class GoodTypesRepository {
             throw new RuntimeException(e);
         }
     }
-    public GoodType findById(int id){
+
+    public GoodType findById(int id) {
         try {
             ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_BY_ID.formatted(id));
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return new GoodType(resultSet.getInt("good_type_id"), resultSet.getString("good_type_name"));
             }
             return null;
@@ -64,10 +66,11 @@ public class GoodTypesRepository {
             throw new RuntimeException(e);
         }
     }
-    public GoodType updateById(GoodTypeCreateDto goodTypeCreateDto, int id){
+
+    public GoodType updateById(GoodTypeCreateDto goodTypeCreateDto, int id) {
         try {
             if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                    formatted(goodTypeCreateDto.getGood_type_name(), id))!=0)
+                    formatted(goodTypeCreateDto.getGood_type_name(), id)) != 0)
                 return new GoodType(id, goodTypeCreateDto);
 
         } catch (SQLException e) {
@@ -75,9 +78,11 @@ public class GoodTypesRepository {
         }
         return null;
     }
-    public String deleteById(int id){
+
+    public String deleteById(int id) {
         try {
-            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) == 0) return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
+            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) == 0)
+                return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
 
         } catch (SQLException e) {
             e.getErrorCode();

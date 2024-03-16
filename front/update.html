@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <title></title>
+
+</head>
+
+<body background="css/bg2.jpg">
+
+  <div class="container mt-5">
+    <!-- Создаем вертикальный контейнер с кнопками на одной линии -->
+    <div class="vertical-container">
+      <!-- Кнопка-чекбокс 1 -->
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btn1" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn1" onclick="location.href='index.html';">Ввод данных</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btn2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn2" onclick="location.href = 'getValues.html';">Получение данных</label>
+       
+        <input type="radio" class="btn-check" name="btnradio" id="btn3" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btn3"   onclick="location.href = 'deleteValues.html';">Удаление данных</label>
+
+        
+        <input type="radio" class="btn-check" name="btnradio" id="btn3" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="btn3">Обновить данные</label>
+      </div>
+    </div>
+  </div>
+  <div class="table-container text-center" id="mainLabel">
+    <div class="row">
+        <div class="col">
+            <!-- Buttons -->
+            <div class="btn-group mt-3">
+                <button class="btn btn-primary" id="familyMemberBtn">Family Member</button>
+                <button class="btn btn-primary" id="paymentsBtn">Payments</button>
+                <button class="btn btn-primary" id="goodsBtn">Goods</button>
+                <button class="btn btn-primary" id="goodTypesBtn">Good Types</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forms -->
+    <div class="row mt-4">
+        <div class="col">
+            <!-- Family Member Form -->
+            <form id="familyMemberForm" class="d-none">
+                <div class="px-3"> <!-- добавленный контейнер с отступами -->
+                    <input type="text" placeholder="ID" class="form-control mb-3 rounded-pill" id="familyMemberId">
+                    <input type="text" placeholder="Status" class="form-control mb-3 rounded-pill" id="familyMemberStatus">
+                    <input type="text" placeholder="Name" class="form-control mb-3 rounded-pill" id="familyMemberName">
+                    <input type="text" placeholder="Birthday" class="form-control mb-3 rounded-pill" id="familyMemberBirthday">
+                    <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill" onclick="submitFormFamilyMember()">Submit</button>
+                </div>
+            </form>
+            
+            
+            <!-- Payments Form -->
+            <!-- Payments Form -->
+            <form id="paymentsForm" class="d-none">
+                <div class="px-3"> <!-- добавленный контейнер с отступами -->
+                    <input type="number" placeholder="ID" class="form-control mb-3 rounded-pill" name="payment_id">
+                    <input type="number" placeholder="Family Member" class="form-control mb-3 rounded-pill" name="family_member">
+                    <input type="number" placeholder="Good" class="form-control mb-3 rounded-pill" name="good">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="number" class="form-control rounded-pill" placeholder="Amount" name="amount">
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control rounded-pill" placeholder="Unit Price" name="unit_price">
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Date" class="form-control mb-3 rounded-pill" name="purchase_date">
+                    <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill" onclick="submitFormPayments()">Submit</button>
+                </div>
+            </form>
+            
+            
+            <!-- Goods Form -->
+            <form id="goodsForm" class="d-none">
+                <div class="px-3"> <!-- добавленный контейнер с отступами -->
+                    <input type="text" placeholder="ID" class="form-control mb-3 rounded-pill" id="goodsId">
+                    <input type="text" placeholder="Name" class="form-control mb-3 rounded-pill" id="goodsName">
+                    <input type="text" placeholder="Type" class="form-control mb-3 rounded-pill" id="goodsType">
+                    <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill" onclick="submitFormGoods()">Submit</button>
+                </div>
+            </form>
+            
+            
+            <!-- Good Types Form -->
+            <form id="goodTypesForm" class="d-none">
+                <div class="px-3"> <!-- добавленный контейнер с отступами -->
+                    <input type="text" placeholder="ID" class="form-control mb-3 rounded-pill" id="goodTypesId">
+                    <input type="text" placeholder="Name" class="form-control mb-3 rounded-pill" id="goodTypesName">
+                    <button type="submit" class="btn btn-primary btn-lg blue_button rounded-pill" onclick="submitFormGoodTypes()">Submit</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (optional) -->
+
+<script>
+    // Show/Hide Forms based on button clicks
+    document.getElementById('familyMemberBtn').addEventListener('click', function() {
+        toggleFormVisibility('familyMemberForm');
+    });
+    document.getElementById('paymentsBtn').addEventListener('click', function() {
+        toggleFormVisibility('paymentsForm');
+    });
+    document.getElementById('goodsBtn').addEventListener('click', function() {
+        toggleFormVisibility('goodsForm');
+    });
+    document.getElementById('goodTypesBtn').addEventListener('click', function() {
+        toggleFormVisibility('goodTypesForm');
+    });
+
+    // Function to toggle form visibility
+    function toggleFormVisibility(formId) {
+        var forms = document.querySelectorAll('form');
+        forms.forEach(function(form) {
+            if (form.id === formId) {
+                form.classList.remove('d-none');
+            } else {
+                form.classList.add('d-none');
+            }
+        });
+    }
+    function sendDataToServer(formName, id, data) {
+        // Формируем URL для отправки запроса
+        var url = 'http://localhost:8080/api/' + formName + '/' + id;
+        // Отправляем запрос на сервер
+        fetch(url, {
+            method: 'PUT', // Используем метод PUT для обновления данных
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data) // Отправляем данные в формате JSON
+        })
+        .then(response => {
+            // Обработка ответа сервера
+            if (response.ok) {
+                // Если запрос выполнен успешно, вы можете выполнить какие-то дополнительные действия, если нужно
+                console.log('Данные успешно обновлены');
+            } else {
+                console.error('Произошла ошибка при обновлении данных');
+            }
+        })
+        .catch(error => {
+            console.error('Произошла ошибка при выполнении запроса:', error);
+        });
+    }
+
+    function submitFormFamilyMember() {
+        // Получаем значения полей формы
+        var id = document.getElementById('familyMemberId').value;
+        var status = document.getElementById('familyMemberStatus').value;
+        var name = document.getElementById('familyMemberName').value;
+        var birthday = document.getElementById('familyMemberBirthday').value;
+        // Формируем объект данных для отправки
+        var data = {
+            id: id,
+            status: status,
+            member_name: name,
+            birthday: birthday
+        };
+        // Отправляем запрос на сервер
+        sendDataToServer('family_members', id, data);
+    }
+    
+    function submitFormPayments() {
+        // Получаем значения полей формы
+        var id = document.getElementById('familyMemberId').value;
+        var status = document.getElementById('familyMemberStatus').value;
+        var name = document.getElementById('familyMemberName').value;
+        var birthday = document.getElementById('familyMemberBirthday').value;
+        // Формируем объект данных для отправки
+        var data = {
+            id: id,
+            status: status,
+            member_name: name,
+            birthday: birthday
+        };
+        // Отправляем запрос на сервер
+        sendDataToServer('family_members', id, data);
+    }
+
+    function submitFormPayments() {
+        // Получаем значения полей формы
+        var id = document.getElementsByName('payment_id')[0].value;
+        var familyMember = document.getElementsByName('family_member')[0].value;
+        var good = document.getElementsByName('good')[0].value;
+        var amount = document.getElementsByName('amount')[0].value;
+        var unitPrice = document.getElementsByName('unit_price')[0].value;
+        var purchaseDate = document.getElementsByName('purchase_date')[0].value;
+        // Формируем объект данных для отправки
+        var data = {
+            id: id,
+            family_member: familyMember,
+            good: good,
+            amount: amount,
+            unit_price: unitPrice,
+            purchase_date: purchaseDate
+        };
+        // Отправляем запрос на сервер
+        sendDataToServer('payments', id, data);
+    }
+
+    // Функция отправки данных из формы товаров
+    function submitFormGoods() {
+        // Получаем значения полей формы
+        var id = document.getElementById('goodsId').value;
+        var name = document.getElementById('goodsName').value;
+        var type = document.getElementById('goodsType').value;
+        // Формируем объект данных для отправки
+        var data = {
+            id: id,
+            good_name: name,
+            type: type
+        };
+        // Отправляем запрос на сервер
+        sendDataToServer('goods', id, data);
+    }
+
+    // Функция отправки данных из формы типов товаров
+    function submitFormGoodTypes() {
+        // Получаем значения полей формы
+        var id = document.getElementById('goodTypesId').value;
+        var name = document.getElementById('goodTypesName').value;
+        // Формируем объект данных для отправки
+        var data = {
+            id: id,
+            good_type_name: name
+        };
+        // Отправляем запрос на сервер
+        sendDataToServer('good_types', id, data);
+    }
+</script>
+</body>
+</html>

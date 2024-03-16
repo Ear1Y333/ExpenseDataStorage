@@ -10,9 +10,11 @@ import java.util.List;
 @Service
 public class FamilyMembersServiceImpl implements FamilyMembersService {
     private final FamilyMemberRepository repository;
-    public FamilyMembersServiceImpl(FamilyMemberRepository repository){
+
+    public FamilyMembersServiceImpl(FamilyMemberRepository repository) {
         this.repository = repository;
     }
+
     @Override
     public List<FamilyMember> getFamilyMembers() {
         return repository.findAll();

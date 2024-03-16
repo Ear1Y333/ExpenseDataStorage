@@ -6,9 +6,9 @@ import mySpring.ExpenseDataSrorage.Repository.PaymentsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
 
-public class PaymentsServiceImpl implements PaymentsService{
+@Service
+public class PaymentsServiceImpl implements PaymentsService {
 
     private final PaymentsRepository repository;
 
