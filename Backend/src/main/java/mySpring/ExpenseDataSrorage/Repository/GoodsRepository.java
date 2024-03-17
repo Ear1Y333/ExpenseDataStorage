@@ -27,61 +27,41 @@ public class GoodsRepository {
         }
     }
 
-    public List<Good> findAll() {
-        try {
-            ArrayList<Good> goods = new ArrayList<>();
-            ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL);
-            while (resultSet.next()) {
-                Good good = new Good
-                        (resultSet.getInt("good_id"), resultSet.getString("good_name"),
-                                resultSet.getInt("type"));
-                goods.add(good);
-            }
-            return goods;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public List<Good> findAll() throws SQLException {
+        ArrayList<Good> goods = new ArrayList<>();
+        ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL);
+        while (resultSet.next()) {
+            Good good = new Good
+                    (resultSet.getInt("good_id"), resultSet.getString("good_name"),
+                            resultSet.getInt("type"));
+            goods.add(good);
         }
+        return goods;
     }
 
-    public GoodCreateDto save(GoodCreateDto goodCreateDto) {
-        try {
-            statement.execute(QUERY_TO_INSERT_VALUES.formatted(goodCreateDto.getGood_name(), goodCreateDto.getType()));
-            return goodCreateDto;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public GoodCreateDto save(GoodCreateDto goodCreateDto) throws SQLException {
+        statement.execute(QUERY_TO_INSERT_VALUES.formatted(goodCreateDto.getGood_name(), goodCreateDto.getType()));
+        return goodCreateDto;
     }
 
-    public Good findById(int id) {
-        try {
-            ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_BY_ID.formatted(id));
-            if (resultSet.next()) {
-                return new Good(resultSet.getInt("good_id"), resultSet.getString("good_name"), resultSet.getInt("type"));
-            }
-            return null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Good updateById(GoodCreateDto goodCreateDto, int id) {
-        try {
-            if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                    formatted(goodCreateDto.getGood_name(), goodCreateDto.getType(), id)) != 0)
-                return new Good(id, goodCreateDto);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public Good findById(int id) throws SQLException {
+        ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_BY_ID.formatted(id));
+        if (resultSet.next()) {
+            return new Good(resultSet.getInt("good_id"), resultSet.getString("good_name"), resultSet.getInt("type"));
         }
         return null;
     }
 
-    public String deleteById(int id) {
-        try {
-            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) != 0)
-                return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
-        } catch (SQLException e) {
-            e.getErrorCode();
-        }
+    public Good updateById(GoodCreateDto goodCreateDto, int id) throws SQLException {
+        if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
+                formatted(goodCreateDto.getGood_name(), goodCreateDto.getType(), id)) != 0)
+            return new Good(id, goodCreateDto);
+        return null;
+    }
+
+    public String deleteById(int id) throws SQLException {
+        if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) != 0)
+            return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
         return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
     }
 }

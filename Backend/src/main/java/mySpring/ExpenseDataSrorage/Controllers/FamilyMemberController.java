@@ -7,6 +7,7 @@ import mySpring.ExpenseDataSrorage.Model.FamilyMemberCreateDto;
 import mySpring.ExpenseDataSrorage.Service.FamilyMembersService;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -17,26 +18,46 @@ public class FamilyMemberController {
 
     @GetMapping
     public List<FamilyMember> getFamilyMembers() {
-        return service.getFamilyMembers();
+        try {
+            return service.getFamilyMembers();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping("create")
     public FamilyMemberCreateDto saveFamilyMember(@RequestBody FamilyMemberCreateDto familyMemberCreateDto) {
-        return service.saveFamilyMember(familyMemberCreateDto);
+        try {
+            return service.saveFamilyMember(familyMemberCreateDto);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @GetMapping("{id}")
     public FamilyMember findById(@PathVariable int id) {
-        return service.findFamilyMemberById(id);
+        try {
+            return service.findFamilyMemberById(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PutMapping("{id}")
     public FamilyMember updateFamilyMember(@RequestBody FamilyMemberCreateDto familyMemberCreateDto, @PathVariable int id) {
-        return service.updateFamilyMember(familyMemberCreateDto, id);
+        try {
+            return service.updateFamilyMember(familyMemberCreateDto, id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @DeleteMapping("{id}")
     public String deleteFamilyMember(@PathVariable int id) {
-        return service.deleteFamilyMember(id);
+        try {
+            return service.deleteFamilyMember(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

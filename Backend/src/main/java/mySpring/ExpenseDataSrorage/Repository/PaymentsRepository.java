@@ -28,63 +28,42 @@ public class PaymentsRepository {
         }
     }
 
-    public List<Payment> findAll() {
-        try {
-            ArrayList<Payment> payments = new ArrayList<>();
-            ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL);
-            while (resultSet.next()) {
-                Payment payment = new Payment
-                        (resultSet.getInt("payment_id"), resultSet.getInt("family_member"),
-                                resultSet.getInt("good"), resultSet.getInt("amount"), resultSet.getInt("unit_price"), resultSet.getString("purchase_date"));
-                payments.add(payment);
-            }
-            return payments;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public List<Payment> findAll() throws SQLException {
+        ArrayList<Payment> payments = new ArrayList<>();
+        ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL);
+        while (resultSet.next()) {
+            Payment payment = new Payment
+                    (resultSet.getInt("payment_id"), resultSet.getInt("family_member"),
+                            resultSet.getInt("good"), resultSet.getInt("amount"), resultSet.getInt("unit_price"), resultSet.getString("purchase_date"));
+            payments.add(payment);
         }
+        return payments;
     }
 
-    public PaymentCreateDto save(PaymentCreateDto payment) {
-        try {
-            statement.execute(QUERY_TO_INSERT_VALUES.formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date()));
-            return payment;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public PaymentCreateDto save(PaymentCreateDto payment) throws SQLException {
+        statement.execute(QUERY_TO_INSERT_VALUES.formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date()));
+        return payment;
     }
 
-    public Payment findById(int id) {
-        try {
-            ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_BY_ID.formatted(id));
-            if (resultSet.next()) {
-                return new Payment(resultSet.getInt("payment_id"), resultSet.getInt("family_member"),
-                        resultSet.getInt("good"), resultSet.getInt("amount"), resultSet.getInt("unit_price"), resultSet.getString("purchase_date"));
-            }
-            return null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Payment updateById(PaymentCreateDto payment, int id) {
-        try {
-            if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                    formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date(), id)) != 0)
-                return new Payment(id, payment);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public Payment findById(int id) throws SQLException {
+        ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_BY_ID.formatted(id));
+        if (resultSet.next()) {
+            return new Payment(resultSet.getInt("payment_id"), resultSet.getInt("family_member"),
+                    resultSet.getInt("good"), resultSet.getInt("amount"), resultSet.getInt("unit_price"), resultSet.getString("purchase_date"));
         }
         return null;
     }
 
-    public String deleteById(int id) {
-        try {
-            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) != 0)
-                return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
-        } catch (SQLException e) {
-            e.getErrorCode();
-        }
+    public Payment updateById(PaymentCreateDto payment, int id) throws SQLException {
+        if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
+                formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date(), id)) != 0)
+            return new Payment(id, payment);
+        return null;
+    }
+
+    public String deleteById(int id) throws SQLException {
+        if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) != 0)
+            return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
         return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
     }
 }

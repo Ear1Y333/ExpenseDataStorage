@@ -5,6 +5,7 @@ import mySpring.ExpenseDataSrorage.Model.GoodTypeCreateDto;
 import mySpring.ExpenseDataSrorage.Repository.GoodTypesRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -16,27 +17,27 @@ public class GoodTypesServiceImpl implements GoodTypesService {
     }
 
     @Override
-    public List<GoodType> getGoodTypes() {
+    public List<GoodType> getGoodTypes() throws SQLException {
         return repository.findAll();
     }
 
     @Override
-    public GoodTypeCreateDto saveGoodType(GoodTypeCreateDto goodTypeCreateDto) {
+    public GoodTypeCreateDto saveGoodType(GoodTypeCreateDto goodTypeCreateDto) throws SQLException {
         return repository.save(goodTypeCreateDto);
     }
 
     @Override
-    public GoodType findGoodTypeById(int id) {
+    public GoodType findGoodTypeById(int id) throws SQLException {
         return repository.findById(id);
     }
 
     @Override
-    public GoodType updateGoodType(GoodTypeCreateDto goodTypeCreateDto, int id) {
+    public GoodType updateGoodType(GoodTypeCreateDto goodTypeCreateDto, int id) throws SQLException {
         return repository.updateById(goodTypeCreateDto, id);
     }
 
     @Override
-    public String deleteGoodType(int id) {
+    public String deleteGoodType(int id) throws SQLException {
         return repository.deleteById(id);
     }
 }

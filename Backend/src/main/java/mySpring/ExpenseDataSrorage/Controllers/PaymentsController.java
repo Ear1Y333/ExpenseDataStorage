@@ -7,6 +7,7 @@ import mySpring.ExpenseDataSrorage.Model.PaymentCreateDto;
 import mySpring.ExpenseDataSrorage.Service.PaymentsServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -17,26 +18,46 @@ public class PaymentsController {
 
     @GetMapping
     public List<Payment> getPayments() {
-        return service.getPayments();
+        try {
+            return service.getPayments();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping("create")
     public PaymentCreateDto savePayment(@RequestBody PaymentCreateDto payment) {
-        return service.savePayment(payment);
+        try {
+            return service.savePayment(payment);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @GetMapping("{id}")
     public Payment findById(@PathVariable int id) {
-        return service.findPaymentById(id);
+        try {
+            return service.findPaymentById(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PutMapping("{id}")
     public Payment updatePayment(@RequestBody PaymentCreateDto payment, @PathVariable int id) {
-        return service.updatePayment(payment, id);
+        try {
+            return service.updatePayment(payment, id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @DeleteMapping("{id}")
     public String deletePayment(@PathVariable int id) {
-        return service.deletePayment(id);
+        try {
+            return service.deletePayment(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

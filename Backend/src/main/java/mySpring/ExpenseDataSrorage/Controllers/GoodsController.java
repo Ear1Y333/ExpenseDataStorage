@@ -7,6 +7,7 @@ import mySpring.ExpenseDataSrorage.Model.GoodCreateDto;
 import mySpring.ExpenseDataSrorage.Service.GoodsServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Timer;
 
@@ -18,26 +19,46 @@ public class GoodsController {
 
     @GetMapping
     public List<Good> getGoods() {
-        return service.getGoods();
+        try {
+            return service.getGoods();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping("create")
     public GoodCreateDto saveGood(@RequestBody GoodCreateDto goodCreateDto) {
-        return service.saveGood(goodCreateDto);
+        try {
+            return service.saveGood(goodCreateDto);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @GetMapping("{id}")
     public Good findById(@PathVariable int id) {
-        return service.findGoodById(id);
+        try {
+            return service.findGoodById(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PutMapping("{id}")
     public Good updatePayment(@RequestBody GoodCreateDto goodCreateDto, @PathVariable int id) {
-        return service.updateGood(goodCreateDto, id);
+        try {
+            return service.updateGood(goodCreateDto, id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @DeleteMapping("{id}")
     public String deletePayment(@PathVariable int id) {
-        return service.deleteGood(id);
+        try {
+            return service.deleteGood(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

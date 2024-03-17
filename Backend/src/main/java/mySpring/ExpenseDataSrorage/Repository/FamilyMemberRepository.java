@@ -23,74 +23,53 @@ public class FamilyMemberRepository {
     private final Statement statement;
 
     public FamilyMemberRepository(Connection connection) {
-
         try {
             statement = connection.createStatement();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     //TODO добавить валилидацию (обработка введенных полей)
-    public List<FamilyMember> findAll() {
-        try {
-            ArrayList<FamilyMember> familyMembers = new ArrayList<>();
-            ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL_GOODS);
-            while (resultSet.next()) {
-                FamilyMember familyMember = new FamilyMember
-                        (resultSet.getInt("id"), resultSet.getString("status"),
-                                resultSet.getString("member_name"), resultSet.getString("birthday"));
-                familyMembers.add(familyMember);
-            }
-            return familyMembers;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public List<FamilyMember> findAll() throws SQLException {
+
+        ArrayList<FamilyMember> familyMembers = new ArrayList<>();
+        ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL_GOODS);
+        while (resultSet.next()) {
+            FamilyMember familyMember = new FamilyMember
+                    (resultSet.getInt("id"), resultSet.getString("status"),
+                            resultSet.getString("member_name"), resultSet.getString("birthday"));
+            familyMembers.add(familyMember);
         }
+        return familyMembers;
+
     }
 
-    public FamilyMemberCreateDto save(FamilyMemberCreateDto familyMemberCreateDto) {
-        try {
-            statement.execute(QUERY_TO_INSERT_VALUES.formatted(familyMemberCreateDto.getStatus(), familyMemberCreateDto.getMember_name(),
-                    familyMemberCreateDto.getBirthday()));
-            return familyMemberCreateDto;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public FamilyMemberCreateDto save(FamilyMemberCreateDto familyMemberCreateDto) throws SQLException {
+        statement.execute(QUERY_TO_INSERT_VALUES.formatted(familyMemberCreateDto.getStatus(), familyMemberCreateDto.getMember_name(),
+                familyMemberCreateDto.getBirthday()));
+        return familyMemberCreateDto;
     }
 
-    public FamilyMember findById(int id) {
-        try {
-            ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_BY_ID.formatted(id));
-            if (resultSet.next()) {
-                return new FamilyMember(resultSet.getInt("id"), resultSet.getString("status"),
-                        resultSet.getString("member_name"), resultSet.getString("birthday"));
-            }
-            return null;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public FamilyMember findById(int id) throws SQLException {
+        ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_BY_ID.formatted(id));
+        if (resultSet.next()) {
+            return new FamilyMember(resultSet.getInt("id"), resultSet.getString("status"),
+                    resultSet.getString("member_name"), resultSet.getString("birthday"));
         }
+        return null;
     }
 
-    public FamilyMember updateById(FamilyMemberCreateDto familyMemberCreateDto, int id) {
-        try {
-            if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                    formatted(familyMemberCreateDto.getStatus(), familyMemberCreateDto.getMember_name(),
-                            familyMemberCreateDto.getBirthday(), id)) == 0) return null;
-
-            return new FamilyMember(id, familyMemberCreateDto);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public FamilyMember updateById(FamilyMemberCreateDto familyMemberCreateDto, int id) throws SQLException {
+        if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
+                formatted(familyMemberCreateDto.getStatus(), familyMemberCreateDto.getMember_name(),
+                        familyMemberCreateDto.getBirthday(), id)) == 0) return null;
+        return new FamilyMember(id, familyMemberCreateDto);
     }
 
-    public String deleteById(int id) {
-        try {
-            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) != 0)
-                return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
-        } catch (SQLException e) {
-            e.getErrorCode();
-        }
+    public String deleteById(int id) throws SQLException {
+        if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) != 0)
+            return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
         return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
     }
 }

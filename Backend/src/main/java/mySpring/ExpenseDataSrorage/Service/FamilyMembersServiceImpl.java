@@ -5,6 +5,7 @@ import mySpring.ExpenseDataSrorage.Model.FamilyMemberCreateDto;
 import mySpring.ExpenseDataSrorage.Repository.FamilyMemberRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -16,27 +17,27 @@ public class FamilyMembersServiceImpl implements FamilyMembersService {
     }
 
     @Override
-    public List<FamilyMember> getFamilyMembers() {
+    public List<FamilyMember> getFamilyMembers() throws SQLException {
         return repository.findAll();
     }
 
     @Override
-    public FamilyMemberCreateDto saveFamilyMember(FamilyMemberCreateDto familyMemberCreateDto) {
+    public FamilyMemberCreateDto saveFamilyMember(FamilyMemberCreateDto familyMemberCreateDto) throws SQLException {
         return repository.save(familyMemberCreateDto);
     }
 
     @Override
-    public FamilyMember findFamilyMemberById(int id) {
+    public FamilyMember findFamilyMemberById(int id) throws SQLException {
         return repository.findById(id);
     }
 
     @Override
-    public FamilyMember updateFamilyMember(FamilyMemberCreateDto familyMemberCreateDto, int id) {
+    public FamilyMember updateFamilyMember(FamilyMemberCreateDto familyMemberCreateDto, int id) throws SQLException {
         return repository.updateById(familyMemberCreateDto, id);
     }
 
     @Override
-    public String deleteFamilyMember(int id) {
+    public String deleteFamilyMember(int id) throws SQLException {
         return repository.deleteById(id);
     }
 }
