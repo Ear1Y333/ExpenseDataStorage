@@ -1,6 +1,5 @@
 package mySpring.ExpenseDataSrorage.Repository;
 
-import mySpring.ExpenseDataSrorage.Connection.SQLConnection;
 import mySpring.ExpenseDataSrorage.Model.FamilyMember;
 import mySpring.ExpenseDataSrorage.Model.FamilyMemberCreateDto;
 import org.springframework.stereotype.Repository;
@@ -77,23 +76,21 @@ public class FamilyMemberRepository {
         try {
             if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
                     formatted(familyMemberCreateDto.getStatus(), familyMemberCreateDto.getMember_name(),
-                            familyMemberCreateDto.getBirthday(), id)) == 0)
-                return null;
+                            familyMemberCreateDto.getBirthday(), id)) == 0) return null;
 
+            return new FamilyMember(id, familyMemberCreateDto);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return new FamilyMember(id, familyMemberCreateDto);
     }
 
     public String deleteById(int id) {
         try {
-            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) == 0)
-                return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
-
+            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) != 0)
+                return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
         } catch (SQLException e) {
             e.getErrorCode();
         }
-        return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
+        return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
     }
 }

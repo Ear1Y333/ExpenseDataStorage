@@ -1,6 +1,5 @@
 package mySpring.ExpenseDataSrorage.Repository;
 
-import mySpring.ExpenseDataSrorage.Connection.SQLConnection;
 import mySpring.ExpenseDataSrorage.Model.Good;
 import mySpring.ExpenseDataSrorage.Model.GoodCreateDto;
 import org.springframework.stereotype.Repository;
@@ -78,12 +77,11 @@ public class GoodsRepository {
 
     public String deleteById(int id) {
         try {
-            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) == 0)
-                return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
-
+            if (statement.executeUpdate(QUERY_TO_DELETE_BY_ID.formatted(id)) != 0)
+                return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
         } catch (SQLException e) {
             e.getErrorCode();
         }
-        return MESSAGE_FOR_SUCCESSFUL_DELETION.formatted(id);
+        return MESSAGE_FOR_UNSUCCESSFUL_DELETION.formatted(id);
     }
 }

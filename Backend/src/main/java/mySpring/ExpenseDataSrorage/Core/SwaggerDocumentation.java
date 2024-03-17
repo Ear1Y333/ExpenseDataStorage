@@ -10,9 +10,14 @@ import java.util.List;
 
 @Configuration
 public class SwaggerDocumentation {
+    private static final String TITLE = "Expense data storage documentation";
+    private static final String URL = "http://localhost:8080";
     @Bean
     public OpenAPI api() {
-        return new OpenAPI().servers(List.of(new Server().url("http://localhost:8080"))).info(new Info().title("Payments documentation"));
+        return new OpenAPI().
+            servers(List.of(new Server()
+                .url(URL)))
+                .info(new Info()
+                .title(TITLE));
     }
-
 }

@@ -6,8 +6,9 @@ import mySpring.ExpenseDataSrorage.Repository.GoodsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-public class GoodsServiceImpl implements GoodsService{
+public class GoodsServiceImpl implements GoodsService {
     private final GoodsRepository repository;
 
     public GoodsServiceImpl(GoodsRepository repository) {

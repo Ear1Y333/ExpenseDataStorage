@@ -40,6 +40,4 @@ public class GoodsController {
     public String deletePayment(@PathVariable int id) {
         return service.deleteGood(id);
     }
-
-
 }
