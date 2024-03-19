@@ -3,20 +3,20 @@ package mySpring.ExpenseDataSrorage.Model;
 public class FamilyMember {
     private int id;
     private String status;
-    private String member_name;
+    private String memberName;
     private String birthday;
 
-    public FamilyMember(int id, String status, String member_name, String birthday) {
+    public FamilyMember(int id, String status, String memberName, String birthday) {
         this.id = id;
         this.status = status;
-        this.member_name = member_name;
+        this.memberName = memberName;
         this.birthday = birthday;
     }
 
     public FamilyMember(int id, FamilyMemberCreateDto familyMemberCreateDto) {
         this.id = id;
         status = familyMemberCreateDto.getStatus();
-        member_name = familyMemberCreateDto.getMember_name();
+        memberName = familyMemberCreateDto.getMemberName();
         birthday = familyMemberCreateDto.getBirthday();
     }
 
@@ -36,12 +36,12 @@ public class FamilyMember {
         this.status = status;
     }
 
-    public String getMember_name() {
-        return member_name;
+    public String getmemberName() {
+        return memberName;
     }
 
-    public void setMember_name(String member_name) {
-        this.member_name = member_name;
+    public void setmemberName(String memberName) {
+        this.memberName = memberName;
     }
 
     public String getBirthday() {

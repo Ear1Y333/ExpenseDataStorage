@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class GoodCreateDto {
-    private String good_name;
+    private String goodName;
     private int type;
 }

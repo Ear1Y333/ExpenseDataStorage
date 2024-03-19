@@ -30,10 +30,9 @@ public class FamilyMemberRepository {
         }
     }
 
-    //TODO добавить валилидацию (обработка введенных полей)
     public List<FamilyMember> findAll() throws SQLException {
 
-        ArrayList<FamilyMember> familyMembers = new ArrayList<>();
+        List<FamilyMember> familyMembers = new ArrayList<>();
         ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL_GOODS);
         while (resultSet.next()) {
             FamilyMember familyMember = new FamilyMember
@@ -46,8 +45,10 @@ public class FamilyMemberRepository {
     }
 
     public FamilyMemberCreateDto save(FamilyMemberCreateDto familyMemberCreateDto) throws SQLException {
-        statement.execute(QUERY_TO_INSERT_VALUES.formatted(familyMemberCreateDto.getStatus(), familyMemberCreateDto.getMember_name(),
-                familyMemberCreateDto.getBirthday()));
+        statement.execute(QUERY_TO_INSERT_VALUES
+                .formatted(familyMemberCreateDto.getStatus(),
+                    familyMemberCreateDto.getMemberName(),
+                        familyMemberCreateDto.getBirthday()));
         return familyMemberCreateDto;
     }
 
@@ -62,7 +63,7 @@ public class FamilyMemberRepository {
 
     public FamilyMember updateById(FamilyMemberCreateDto familyMemberCreateDto, int id) throws SQLException {
         if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                formatted(familyMemberCreateDto.getStatus(), familyMemberCreateDto.getMember_name(),
+                formatted(familyMemberCreateDto.getStatus(), familyMemberCreateDto.getMemberName(),
                         familyMemberCreateDto.getBirthday(), id)) == 0) return null;
         return new FamilyMember(id, familyMemberCreateDto);
     }

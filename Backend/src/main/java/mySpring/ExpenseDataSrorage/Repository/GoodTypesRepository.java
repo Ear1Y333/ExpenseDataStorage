@@ -31,7 +31,7 @@ public class GoodTypesRepository {
     }
 
     public List<GoodType> findAll() throws SQLException {
-        ArrayList<GoodType> goodTypes = new ArrayList<>();
+        List<GoodType> goodTypes = new ArrayList<>();
         ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL);
         while (resultSet.next()) {
             GoodType goodType = new GoodType
@@ -42,7 +42,7 @@ public class GoodTypesRepository {
     }
 
     public GoodTypeCreateDto save(GoodTypeCreateDto goodTypeCreateDto) throws SQLException {
-        statement.execute(QUERY_TO_INSERT_VALUES.formatted(goodTypeCreateDto.getGood_type_name()));
+        statement.execute(QUERY_TO_INSERT_VALUES.formatted(goodTypeCreateDto.getGoodTypeName()));
         return goodTypeCreateDto;
     }
 
@@ -56,7 +56,7 @@ public class GoodTypesRepository {
 
     public GoodType updateById(GoodTypeCreateDto goodTypeCreateDto, int id) throws SQLException {
         if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                formatted(goodTypeCreateDto.getGood_type_name(), id)) != 0)
+                formatted(goodTypeCreateDto.getGoodTypeName(), id)) != 0)
             return new GoodType(id, goodTypeCreateDto);
         return null;
     }

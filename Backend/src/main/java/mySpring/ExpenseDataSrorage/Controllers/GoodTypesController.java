@@ -1,7 +1,6 @@
 package mySpring.ExpenseDataSrorage.Controllers;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.GoodType;
 import mySpring.ExpenseDataSrorage.Model.GoodTypeCreateDto;
 import mySpring.ExpenseDataSrorage.Service.GoodTypesServiceImpl;
@@ -12,9 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/good_types")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GoodTypesController {
-    GoodTypesServiceImpl service;
+    private final GoodTypesServiceImpl service;
 
     @GetMapping
     public List<GoodType> getGoodTypes() {

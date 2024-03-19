@@ -1,7 +1,6 @@
 package mySpring.ExpenseDataSrorage.Controllers;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.Good;
 import mySpring.ExpenseDataSrorage.Model.GoodCreateDto;
 import mySpring.ExpenseDataSrorage.Service.GoodsServiceImpl;
@@ -9,13 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Timer;
 
 @RestController
 @RequestMapping("/api/goods")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GoodsController {
-    GoodsServiceImpl service;
+    private final GoodsServiceImpl service;
 
     @GetMapping
     public List<Good> getGoods() {

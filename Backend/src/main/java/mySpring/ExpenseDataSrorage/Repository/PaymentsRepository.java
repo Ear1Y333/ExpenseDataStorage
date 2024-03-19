@@ -29,7 +29,7 @@ public class PaymentsRepository {
     }
 
     public List<Payment> findAll() throws SQLException {
-        ArrayList<Payment> payments = new ArrayList<>();
+        List<Payment> payments = new ArrayList<>();
         ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL);
         while (resultSet.next()) {
             Payment payment = new Payment
@@ -41,7 +41,7 @@ public class PaymentsRepository {
     }
 
     public PaymentCreateDto save(PaymentCreateDto payment) throws SQLException {
-        statement.execute(QUERY_TO_INSERT_VALUES.formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date()));
+        statement.execute(QUERY_TO_INSERT_VALUES.formatted(payment.getFamilyMember(), payment.getGood(), payment.getAmount(), payment.getUnitPrice(), payment.getPurchaseDate()));
         return payment;
     }
 
@@ -56,7 +56,7 @@ public class PaymentsRepository {
 
     public Payment updateById(PaymentCreateDto payment, int id) throws SQLException {
         if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                formatted(payment.getFamily_member(), payment.getGood(), payment.getAmount(), payment.getUnit_price(), payment.getPurchase_date(), id)) != 0)
+                formatted(payment.getFamilyMember(), payment.getGood(), payment.getAmount(), payment.getUnitPrice(), payment.getPurchaseDate(), id)) != 0)
             return new Payment(id, payment);
         return null;
     }

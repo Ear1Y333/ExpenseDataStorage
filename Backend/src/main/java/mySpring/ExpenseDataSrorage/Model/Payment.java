@@ -2,28 +2,28 @@ package mySpring.ExpenseDataSrorage.Model;
 
 public class Payment {
     private int id;
-    private int family_member;
+    private int familyMember;
     private int good;
     private int amount;
-    private int unit_price;
-    private String purchase_date;
+    private int unitPrice;
+    private String purchaseDate;
 
-    public Payment(int id, int family_member, int good, int amount, int unit_price, String purchase_date) {
+    public Payment(int id, int familyMember, int good, int amount, int unitPrice, String purchaseDate) {
         this.id = id;
-        this.family_member = family_member;
+        this.familyMember = familyMember;
         this.good = good;
         this.amount = amount;
-        this.unit_price = unit_price;
-        this.purchase_date = purchase_date;
+        this.unitPrice = unitPrice;
+        this.purchaseDate = purchaseDate;
     }
 
     public Payment(int id, PaymentCreateDto paymentCreate) {
         this.id = id;
-        family_member = paymentCreate.getFamily_member();
+        familyMember = paymentCreate.getFamilyMember();
         good = paymentCreate.getGood();
         amount = paymentCreate.getAmount();
-        unit_price = paymentCreate.getUnit_price();
-        purchase_date = paymentCreate.getPurchase_date();
+        unitPrice = paymentCreate.getUnitPrice();
+        purchaseDate = paymentCreate.getPurchaseDate();
     }
 
 
@@ -31,8 +31,8 @@ public class Payment {
         this.id = id;
     }
 
-    public void setFamily_member(int family_member) {
-        this.family_member = family_member;
+    public void setFamilyMember(int familyMember) {
+        this.familyMember = familyMember;
     }
 
     public void setGood(int good) {
@@ -43,20 +43,20 @@ public class Payment {
         this.amount = amount;
     }
 
-    public void setUnit_price(int unit_price) {
-        this.unit_price = unit_price;
+    public void setUnitPrice(int unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
-    public void setPurchase_date(String purchase_date) {
-        this.purchase_date = purchase_date;
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
     public int getId() {
         return id;
     }
 
-    public int getFamily_member() {
-        return family_member;
+    public int getFamilyMember() {
+        return familyMember;
     }
 
     public int getGood() {
@@ -67,11 +67,11 @@ public class Payment {
         return amount;
     }
 
-    public int getUnit_price() {
-        return unit_price;
+    public int getUnitPrice() {
+        return unitPrice;
     }
 
-    public String getPurchase_date() {
-        return purchase_date;
+    public String getPurchaseDate() {
+        return purchaseDate;
     }
 }

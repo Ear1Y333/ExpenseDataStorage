@@ -1,7 +1,6 @@
 package mySpring.ExpenseDataSrorage.Controllers;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.FamilyMember;
 import mySpring.ExpenseDataSrorage.Model.FamilyMemberCreateDto;
 import mySpring.ExpenseDataSrorage.Service.FamilyMembersService;
@@ -12,9 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/family_members")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class FamilyMemberController {
-    FamilyMembersService service;
+    private final FamilyMembersService service;
 
     @GetMapping
     public List<FamilyMember> getFamilyMembers() {

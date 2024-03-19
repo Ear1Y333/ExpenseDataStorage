@@ -28,7 +28,7 @@ public class GoodsRepository {
     }
 
     public List<Good> findAll() throws SQLException {
-        ArrayList<Good> goods = new ArrayList<>();
+        List<Good> goods = new ArrayList<>();
         ResultSet resultSet = statement.executeQuery(QUERY_TO_FIND_ALL);
         while (resultSet.next()) {
             Good good = new Good
@@ -40,7 +40,7 @@ public class GoodsRepository {
     }
 
     public GoodCreateDto save(GoodCreateDto goodCreateDto) throws SQLException {
-        statement.execute(QUERY_TO_INSERT_VALUES.formatted(goodCreateDto.getGood_name(), goodCreateDto.getType()));
+        statement.execute(QUERY_TO_INSERT_VALUES.formatted(goodCreateDto.getGoodName(), goodCreateDto.getType()));
         return goodCreateDto;
     }
 
@@ -54,7 +54,7 @@ public class GoodsRepository {
 
     public Good updateById(GoodCreateDto goodCreateDto, int id) throws SQLException {
         if (statement.executeUpdate(QUERY_TO_UPDATE_BY_ID.
-                formatted(goodCreateDto.getGood_name(), goodCreateDto.getType(), id)) != 0)
+                formatted(goodCreateDto.getGoodName(), goodCreateDto.getType(), id)) != 0)
             return new Good(id, goodCreateDto);
         return null;
     }

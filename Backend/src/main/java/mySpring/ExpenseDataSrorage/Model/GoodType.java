@@ -1,32 +1,32 @@
 package mySpring.ExpenseDataSrorage.Model;
 
 public class GoodType {
-    private int good_type_id;
-    private String good_type_name;
+    private int goodTypeId;
+    private String goodTypeName;
 
-    public GoodType(int good_type_id, String good_type_name) {
-        this.good_type_id = good_type_id;
-        this.good_type_name = good_type_name;
+    public GoodType(int goodTypeId, String goodTypeName) {
+        this.goodTypeId = goodTypeId;
+        this.goodTypeName = goodTypeName;
     }
 
-    public GoodType(int good_type_id, GoodTypeCreateDto goodTypeCreateDto) {
-        this.good_type_id = good_type_id;
-        good_type_name = goodTypeCreateDto.getGood_type_name();
+    public GoodType(int goodTypeId, GoodTypeCreateDto goodTypeCreateDto) {
+        this.goodTypeId = goodTypeId;
+        goodTypeName = goodTypeCreateDto.getGoodTypeName();
     }
 
-    public int getGood_type_id() {
-        return good_type_id;
+    public int getGoodTypeId() {
+        return goodTypeId;
     }
 
-    public void setGood_type_id(int good_type_id) {
-        this.good_type_id = good_type_id;
+    public void setGoodTypeId(int goodTypeId) {
+        this.goodTypeId = goodTypeId;
     }
 
-    public String getGood_type_name() {
-        return good_type_name;
+    public String getGoodTypeName() {
+        return goodTypeName;
     }
 
-    public void setGood_type_name(String good_type_name) {
-        this.good_type_name = good_type_name;
+    public void setGoodTypeName(String goodTypeName) {
+        this.goodTypeName = goodTypeName;
     }
 }

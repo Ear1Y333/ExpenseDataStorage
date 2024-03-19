@@ -1,7 +1,6 @@
 package mySpring.ExpenseDataSrorage.Controllers;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import mySpring.ExpenseDataSrorage.Model.Payment;
 import mySpring.ExpenseDataSrorage.Model.PaymentCreateDto;
 import mySpring.ExpenseDataSrorage.Service.PaymentsServiceImpl;
@@ -12,9 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/payments")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PaymentsController {
-    PaymentsServiceImpl service;
+    private final PaymentsServiceImpl service;
 
     @GetMapping
     public List<Payment> getPayments() {
